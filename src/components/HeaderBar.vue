@@ -14,9 +14,8 @@ export default {};
 <style>
 .header-bar {
   font-weight: bolder;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   background-color: #3ab982;
   color: #2c3e50;
-  margin: 0;
 }
 </style>

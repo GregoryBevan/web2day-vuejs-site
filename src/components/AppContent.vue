@@ -1,7 +1,7 @@
 <template>
     <b-container fluid class="content">
-        <viewer-navbar></viewer-navbar>
-        <viewer-step></viewer-step>
+        <viewer-navbar :currentStep="currentStep" @stepToDisplay="setCurrentStep"></viewer-navbar>
+        <viewer-step :currentStep="currentStep"></viewer-step>
     </b-container>
 </template>
 
@@ -9,9 +9,19 @@
 import ViewerNavbar from './viewer/ViewerNavbar'
 import ViewerStep from './viewer/ViewerStep'
 export default {
+    data() {
+        return {
+            currentStep: 1
+        }
+    },
     components: {
         ViewerNavbar,
         ViewerStep
+    },
+    methods: {
+        setCurrentStep(step) {
+            this.currentStep = step
+        }
     }
 };
 </script>

@@ -1,25 +1,53 @@
 <template>
     <b-container fluid>
         <b-row>
+            <b-col md="4"></b-col>
             <b-col>
-                <b-button-toolbar key-nav aria-label="Toolbar with button groups" justify="center">
+                <b-button-toolbar key-nav aria-label="Toolbar with button groups" justify>
                     <b-button-group class="mx-1">
-                        <b-btn>&laquo;</b-btn>
-                        <b-btn>&lsaquo;</b-btn>
+                        <b-btn @click="goToFirst" :disabled="disableLeftButtons">&laquo;</b-btn>
+                        <b-btn @click="goToPrevious" :disabled="disableLeftButtons">&lsaquo;</b-btn>
                     </b-button-group>
-                    <span class="current-step align-text-bottom">Step 1</span>
+                    <span class="current-step align-text-bottom">{{ getStepName }}</span>
                     <b-button-group class="mx-1">
-                        <b-btn>&rsaquo;</b-btn>
-                        <b-btn>&raquo;</b-btn>
+                        <b-btn @click="goToNext" :disabled="disableRightButtons">&rsaquo;</b-btn>
+                        <b-btn @click="goToLast" :disabled="disableRightButtons">&raquo;</b-btn>
                     </b-button-group>
                 </b-button-toolbar>
             </b-col>
+            <b-col md="4"></b-col>
         </b-row>
     </b-container>
 </template>
 
 <script>
 export default {
+    props: ['currentStep'],
+    methods: {
+        goToFirst() {
+            this.$emit('stepToDisplay', 1)
+        },
+        goToLast() {
+            this.$emit('stepToDisplay', 11)
+        },
+        goToNext() {
+            this.$emit('stepToDisplay', this.currentStep + 1)
+        },
+        goToPrevious() {
+            this.$emit('stepToDisplay', this.currentStep - 1)
+        }
+    },
+    computed: {
+        getStepName() {
+            return `Step ${this.currentStep}`
+        },
+        disableLeftButtons() {
+            return this.currentStep == 1
+        },
+        disableRightButtons() {
+            return this.currentStep == 11
+        }
+    }
 
 }
 </script>
