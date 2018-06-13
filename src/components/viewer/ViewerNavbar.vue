@@ -22,40 +22,43 @@
 
 <script>
 export default {
-    props: ['currentStep'],
-    methods: {
-        goToFirst() {
-            this.$emit('stepToDisplay', 1)
-        },
-        goToLast() {
-            this.$emit('stepToDisplay', 11)
-        },
-        goToNext() {
-            this.$emit('stepToDisplay', this.currentStep + 1)
-        },
-        goToPrevious() {
-            this.$emit('stepToDisplay', this.currentStep - 1)
-        }
+  props: ["currentStep"],
+  methods: {
+    goToFirst() {
+      this.$emit("stepToDisplay", 1);
     },
-    computed: {
-        getStepName() {
-            return `Step ${this.currentStep}`
-        },
-        disableLeftButtons() {
-            return this.currentStep == 1
-        },
-        disableRightButtons() {
-            return this.currentStep == 11
-        }
+    goToLast() {
+      this.$emit("stepToDisplay", 11);
+    },
+    goToNext() {
+      this.$emit("stepToDisplay", this.currentStep + 1);
+    },
+    goToPrevious() {
+      this.$emit("stepToDisplay", this.currentStep - 1);
     }
-
-}
+  },
+  computed: {
+    getStepName() {
+      return `Step ${this.currentStep}`;
+    },
+    disableLeftButtons() {
+      return this.currentStep == 1;
+    },
+    disableRightButtons() {
+      return this.currentStep == 11;
+    }
+  }
+};
 </script>
 
 <style>
 .current-step {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.btn-secondary {
+  color: #2c3e50 !important;
 }
 
 .btn-secondary,
@@ -63,6 +66,10 @@ export default {
 .btn-secondary:active,
 .btn-secondary:visited {
   background-color: #3ab982 !important;
-  outline-color: #3ab982 !important;
+}
+
+.btn-secondary:hover:enabled {
+  color: aliceblue !important;
+  box-shadow: 0 0 0 0.1rem #3ab98266 !important;
 }
 </style>
